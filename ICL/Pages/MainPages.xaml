@@ -1,0 +1,94 @@
+﻿<Page x:Class="ICL.Pages.MainPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ICL.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPages">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#DFA43C" Offset="0"/>
+                                <GradientStop Color="#FFDD7E" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Margin="10">
+                <Label Padding="10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Content="Search"></Label>
+                <CheckBox IsChecked="{Binding ProductFilter.ByText}" x:Name="byText" Margin="3" FontWeight="Bold" Content="By text"></CheckBox>
+                <TextBox  x:Name="TbSearch" Style="{StaticResource RoundTextBlock}" Height="30" FontSize="20" Padding="5 0 0 0" IsEnabled="{Binding IsChecked, ElementName=byText}"  Margin="2"></TextBox>
+                <Separator Margin="20"></Separator>
+                <CheckBox IsChecked="{Binding ProductFilter.ByCategory}" x:Name="byCategory"  FontWeight="Bold" Content="By category"></CheckBox>
+                <ComboBox ItemsSource="{Binding Cotegories}" x:Name="CbCategory" IsEnabled="{Binding IsChecked, ElementName=byCategory}" DisplayMemberPath="Title" Margin="2">
+                </ComboBox>
+                <Separator Margin="20"></Separator>
+                <Button  Style="{StaticResource RoundButton}" Height="30" Padding="10" Margin="3" Content="Search" Click="Button_Click_1"></Button>
+                <Button  Style="{StaticResource RoundButton}"  Height="30" Padding="10" Margin="3" Content="Show all" Click="Button_Click_2"></Button>
+                <Button  Style="{StaticResource RoundButton}"  x:Name="BtCart" Height="30" Padding="10" Margin="3" Content="Cart" Click="Button_Click_3"></Button>
+                <Button  Style="{StaticResource RoundButton}" x:Name="BtAdd"  Height="30" Padding="10"  Margin="3" Content="Add product" Click="Button_Click_4"></Button>
+                <Button  Style="{StaticResource RoundButton}" x:Name="BtEdit"  Height="30" Padding="10"  Margin="3" Content="Edit product" Click="Button_Click_5"></Button>
+                <Button  Style="{StaticResource RoundButton}" x:Name="BtHistory"  Height="30" Padding="10"  Margin="3" Content="History " Click="Button_Click_7"></Button>
+                <Button  Style="{StaticResource RoundButton}" Height="30" Padding="10"  Margin="3" Content="Exit" Click="Button_Click_6"></Button>
+            </StackPanel>
+        </StackPanel>
+        <ListBox VerticalAlignment="Top" x:Name="LBProduct" Grid.Column="1" HorizontalContentAlignment="Stretch" AlternationCount="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="FontFamily" Value="Arial"/>
+                                <Setter Property="FontSize" Value="12"/>
+                            </Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="FontFamily" Value="Arial"/>
+                            </Style>
+
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0">
+                            <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                            <TextBlock Padding="3" FontSize="14" TextWrapping="Wrap" Width="530" Text="{Binding Description}"></TextBlock>
+                            <StackPanel Margin="3" Orientation="Horizontal">
+                                <TextBlock FontSize="12" FontWeight="Bold" Text="Category: "></TextBlock>
+                                <TextBlock FontSize="12" Text="{Binding Cotegories.Title}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
+                            <TextBlock FontSize="18" FontWeight="Bold" Text="Price: "></TextBlock>
+                            <TextBlock FontSize="18" Text="{Binding Price}"></TextBlock>
+                            <TextBlock FontSize="18" Text=" руб."></TextBlock>
+                        </StackPanel>
+                        <Button Width="70" FontSize="14" Grid.Row="0" Visibility="{Binding VisabilityBt}" Grid.Column="2" Padding="10" Click="Button_Click">
+                            <Button.Content>
+                                <Image Source="/Resoursec/cart.png"  Stretch="UniformToFill"></Image>
+
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
+</Page>

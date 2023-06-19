@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6168d93447e64089bb703f55d9b3592c" Name="Diagram1">
+        <EntityTypeShape EntityType="ICLModel.Cotegories" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="ICLModel.Employe" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="ICLModel.Product" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="ICLModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ICLModel.Zakaz" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="ICLModel.ZakazProduct" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="ICLModel.FK_Product_Cotegories" />
+        <AssociationConnector Association="ICLModel.FK_ZakazProduct_Employe" />
+        <AssociationConnector Association="ICLModel.FK_ZakazProduct_Product" />
+        <AssociationConnector Association="ICLModel.FK_ZakazProduct_Zakaz" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ICLModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cotegories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prise" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ZakazProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZakazId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="EmployeId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Product_Cotegories">
+          <End Role="Cotegories" Type="Self.Cotegories" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotegories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZakazProduct_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="0..1" />
+          <End Role="ZakazProduct" Type="Self.ZakazProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZakazProduct">
+              <PropertyRef Name="EmployeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZakazProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ZakazProduct" Type="Self.ZakazProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZakazProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZakazProduct_Zakaz">
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="0..1" />
+          <End Role="ZakazProduct" Type="Self.ZakazProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zakaz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZakazProduct">
+              <PropertyRef Name="ZakazId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ICLModelContainer">
+          <EntitySet Name="Cotegories" EntityType="Self.Cotegories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZakazProduct" EntityType="Self.ZakazProduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Product_Cotegories" Association="Self.FK_Product_Cotegories">
+            <End Role="Cotegories" EntitySet="Cotegories" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZakazProduct_Employe" Association="Self.FK_ZakazProduct_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="ZakazProduct" EntitySet="ZakazProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZakazProduct_Product" Association="Self.FK_ZakazProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ZakazProduct" EntitySet="ZakazProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZakazProduct_Zakaz" Association="Self.FK_ZakazProduct_Zakaz">
+            <End Role="Zakaz" EntitySet="Zakaz" />
+            <End Role="ZakazProduct" EntitySet="ZakazProduct" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ICLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cotegories" EntityType="ICLModel.Cotegories" />
+          <EntitySet Name="Employe" EntityType="ICLModel.Employe" />
+          <EntitySet Name="Product" EntityType="ICLModel.Product" />
+          <EntitySet Name="sysdiagrams" EntityType="ICLModel.sysdiagrams" />
+          <EntitySet Name="Zakaz" EntityType="ICLModel.Zakaz" />
+          <EntitySet Name="ZakazProduct" EntityType="ICLModel.ZakazProduct" />
+          <AssociationSet Name="FK_Product_Cotegories" Association="ICLModel.FK_Product_Cotegories">
+            <End Role="Cotegories" EntitySet="Cotegories" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZakazProduct_Employe" Association="ICLModel.FK_ZakazProduct_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="ZakazProduct" EntitySet="ZakazProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZakazProduct_Product" Association="ICLModel.FK_ZakazProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ZakazProduct" EntitySet="ZakazProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZakazProduct_Zakaz" Association="ICLModel.FK_ZakazProduct_Zakaz">
+            <End Role="Zakaz" EntitySet="Zakaz" />
+            <End Role="ZakazProduct" EntitySet="ZakazProduct" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cotegories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="ICLModel.FK_Product_Cotegories" FromRole="Cotegories" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ZakazProduct" Relationship="ICLModel.FK_ZakazProduct_Employe" FromRole="Employe" ToRole="ZakazProduct" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Cotegories" Relationship="ICLModel.FK_Product_Cotegories" FromRole="Product" ToRole="Cotegories" />
+          <NavigationProperty Name="ZakazProduct" Relationship="ICLModel.FK_ZakazProduct_Product" FromRole="Product" ToRole="ZakazProduct" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ZakazProduct" Relationship="ICLModel.FK_ZakazProduct_Zakaz" FromRole="Zakaz" ToRole="ZakazProduct" />
+        </EntityType>
+        <EntityType Name="ZakazProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZakazId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="EmployeId" Type="Int32" />
+          <NavigationProperty Name="Employe" Relationship="ICLModel.FK_ZakazProduct_Employe" FromRole="ZakazProduct" ToRole="Employe" />
+          <NavigationProperty Name="Product" Relationship="ICLModel.FK_ZakazProduct_Product" FromRole="ZakazProduct" ToRole="Product" />
+          <NavigationProperty Name="Zakaz" Relationship="ICLModel.FK_ZakazProduct_Zakaz" FromRole="ZakazProduct" ToRole="Zakaz" />
+        </EntityType>
+        <Association Name="FK_Product_Cotegories">
+          <End Type="ICLModel.Cotegories" Role="Cotegories" Multiplicity="0..1" />
+          <End Type="ICLModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotegories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZakazProduct_Employe">
+          <End Type="ICLModel.Employe" Role="Employe" Multiplicity="0..1" />
+          <End Type="ICLModel.ZakazProduct" Role="ZakazProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZakazProduct">
+              <PropertyRef Name="EmployeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZakazProduct_Product">
+          <End Type="ICLModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="ICLModel.ZakazProduct" Role="ZakazProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZakazProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZakazProduct_Zakaz">
+          <End Type="ICLModel.Zakaz" Role="Zakaz" Multiplicity="0..1" />
+          <End Type="ICLModel.ZakazProduct" Role="ZakazProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zakaz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZakazProduct">
+              <PropertyRef Name="ZakazId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ICLModelContainer" CdmEntityContainer="ICLEntities">
+          <EntitySetMapping Name="Cotegories">
+            <EntityTypeMapping TypeName="ICLModel.Cotegories">
+              <MappingFragment StoreEntitySet="Cotegories">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employe">
+            <EntityTypeMapping TypeName="ICLModel.Employe">
+              <MappingFragment StoreEntitySet="Employe">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ICLModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ICLModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakaz">
+            <EntityTypeMapping TypeName="ICLModel.Zakaz">
+              <MappingFragment StoreEntitySet="Zakaz">
+                <ScalarProperty Name="Prise" ColumnName="Prise" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZakazProduct">
+            <EntityTypeMapping TypeName="ICLModel.ZakazProduct">
+              <MappingFragment StoreEntitySet="ZakazProduct">
+                <ScalarProperty Name="EmployeId" ColumnName="EmployeId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ZakazId" ColumnName="ZakazId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
