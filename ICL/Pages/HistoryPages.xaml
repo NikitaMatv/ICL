@@ -17,7 +17,7 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Background="#DFA43C">
-            <Button Margin="5" Width="100" Content="To the products" Click="Button_Click_4"></Button>
+            <Button Margin="5" Width="110" Content="К списку товаров " Click="Button_Click_4"></Button>
         </StackPanel>
 
         <ListBox VerticalAlignment="Top" Grid.ColumnSpan="2" x:Name="LbCart" HorizontalContentAlignment="Stretch" AlternationCount="2">

@@ -32,6 +32,10 @@ namespace ICL.Pages
                 pri += (int)items.Product.Price * (int)items.Count;
             }
             TbPrice.Text = pri.ToString();
+            if(LbCart.Items.Count == 0)
+            {
+                BtZakaz.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

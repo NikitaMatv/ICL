@@ -27,21 +27,21 @@
                 </Style>
             </StackPanel.Resources>
             <StackPanel Margin="10">
-                <Label Padding="10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Content="Search"></Label>
-                <CheckBox IsChecked="{Binding ProductFilter.ByText}" x:Name="byText" Margin="3" FontWeight="Bold" Content="By text"></CheckBox>
+                <Label Padding="10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Content="Поиск"></Label>
+                <CheckBox IsChecked="{Binding ProductFilter.ByText}" x:Name="byText" Margin="3" FontWeight="Bold" Content=" По тексту"></CheckBox>
                 <TextBox  x:Name="TbSearch" Style="{StaticResource RoundTextBlock}" Height="30" FontSize="20" Padding="5 0 0 0" IsEnabled="{Binding IsChecked, ElementName=byText}"  Margin="2"></TextBox>
                 <Separator Margin="20"></Separator>
-                <CheckBox IsChecked="{Binding ProductFilter.ByCategory}" x:Name="byCategory"  FontWeight="Bold" Content="By category"></CheckBox>
+                <CheckBox IsChecked="{Binding ProductFilter.ByCategory}" x:Name="byCategory"  FontWeight="Bold" Content="По категории"></CheckBox>
                 <ComboBox ItemsSource="{Binding Cotegories}" x:Name="CbCategory" IsEnabled="{Binding IsChecked, ElementName=byCategory}" DisplayMemberPath="Title" Margin="2">
                 </ComboBox>
                 <Separator Margin="20"></Separator>
-                <Button  Style="{StaticResource RoundButton}" Height="30" Padding="10" Margin="3" Content="Search" Click="Button_Click_1"></Button>
-                <Button  Style="{StaticResource RoundButton}"  Height="30" Padding="10" Margin="3" Content="Show all" Click="Button_Click_2"></Button>
-                <Button  Style="{StaticResource RoundButton}"  x:Name="BtCart" Height="30" Padding="10" Margin="3" Content="Cart" Click="Button_Click_3"></Button>
-                <Button  Style="{StaticResource RoundButton}" x:Name="BtAdd"  Height="30" Padding="10"  Margin="3" Content="Add product" Click="Button_Click_4"></Button>
-                <Button  Style="{StaticResource RoundButton}" x:Name="BtEdit"  Height="30" Padding="10"  Margin="3" Content="Edit product" Click="Button_Click_5"></Button>
-                <Button  Style="{StaticResource RoundButton}" x:Name="BtHistory"  Height="30" Padding="10"  Margin="3" Content="History " Click="Button_Click_7"></Button>
-                <Button  Style="{StaticResource RoundButton}" Height="30" Padding="10"  Margin="3" Content="Exit" Click="Button_Click_6"></Button>
+                <Button  Style="{StaticResource RoundButton}" Height="30" Padding="10" Margin="3" Content="Поиск" Click="Button_Click_1"></Button>
+                <Button  Style="{StaticResource RoundButton}"  Height="30" Padding="10" Margin="3" Content="Показать все" Click="Button_Click_2"></Button>
+                <Button  Style="{StaticResource RoundButton}"  x:Name="BtCart" Height="30" Padding="10" Margin="3" Content="Корзина" Click="Button_Click_3"></Button>
+                <Button  Style="{StaticResource RoundButton}" x:Name="BtAdd"  Height="30" Padding="10"  Margin="3" Content=" Добавить товар" Click="Button_Click_4"></Button>
+                <Button  Style="{StaticResource RoundButton}" x:Name="BtEdit"  Height="30" Padding="10"  Margin="3" Content="Редактировать товар" Click="Button_Click_5"></Button>
+                <Button  Style="{StaticResource RoundButton}" x:Name="BtHistory"  Height="30" Padding="10"  Margin="3" Content="История заказов " Click="Button_Click_7"></Button>
+                <Button  Style="{StaticResource RoundButton}" Height="30" Padding="10"  Margin="3" Content="Выход" Click="Button_Click_6"></Button>
             </StackPanel>
         </StackPanel>
         <ListBox VerticalAlignment="Top" x:Name="LBProduct" Grid.Column="1" HorizontalContentAlignment="Stretch" AlternationCount="2">
