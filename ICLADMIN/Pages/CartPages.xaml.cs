@@ -1,4 +1,4 @@
-﻿using ICL.Components;
+﻿using ICLADMIN.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ICL.Pages
+namespace ICLADMIN.Pages
 {
     /// <summary>
     /// Логика взаимодействия для CartPages.xaml
@@ -60,6 +60,11 @@ namespace ICL.Pages
             App.DB.SaveChanges();
             NavigationService.Navigate(new CartPages());
         }
+
+      
+
+   
+
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             var selectedclient = (sender as Button).DataContext as ZakazProduct;
@@ -75,13 +80,11 @@ namespace ICL.Pages
             App.DB.SaveChanges();
             NavigationService.Navigate(new CartPages());
         }
+
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Zakaz zakaz = new Zakaz();
             zakaz.Prise = TbPrice.Text;
-            zakaz.Data =  DateTime.Now.AddDays(17);
-            Random rand = new Random();
-            zakaz.Code = rand.Next(100000, 999999);
             App.DB.Zakaz.Add(zakaz);
             App.DB.SaveChanges();
             IEnumerable<ZakazProduct> products = App.DB.ZakazProduct.Where(x => x.ZakazId == null && x.EmployeId == App.LoggedEmployee.Id).ToList();
@@ -90,9 +93,10 @@ namespace ICL.Pages
                 items.ZakazId = zakaz.Id;
             }
             App.DB.SaveChanges();
-            MessageBox.Show($"Заказ № {zakaz.Id} оформлен.\n Закакз будет готов к {DateTime.Now.AddDays(17).ToString("D")}. \n Забрать можно по адрезу  ул. Сибирский тракт, д. 34, к.1. \n Контактный телефон: +7 (843) 279-58-23  \n Код заказа {zakaz.Code}. ");
+            MessageBox.Show($"Заказ № {zakaz.Id} оформлен.\n Закакз будет готов к {DateTime.Now.AddDays(17).ToString("D")}. \n Забрать можно по адрезу  ул. Сибирский тракт, д. 34, к.1. \n Контактный телефон: +7 (843) 279-58-23 ");
             NavigationService.Navigate(new CartPages());
         }
+
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainPages());

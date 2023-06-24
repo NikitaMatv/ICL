@@ -1,12 +1,13 @@
-﻿<Page x:Class="ICL.Pages.HistoryPages"
+﻿<Page x:Class="ICLADMIN.Pages.CartPages"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ICL.Pages"
+      xmlns:local="clr-namespace:ICLADMIN.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HistoryPages">
+      Title="CartPages">
+
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -17,7 +18,11 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Background="#DFA43C">
-            <Button Margin="5" Width="110" Content="К списку товаров " Click="Button_Click_4"></Button>
+            <TextBlock Padding="5" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Text="Итоговая цена: "></TextBlock>
+            <TextBlock Padding="5" VerticalAlignment="Center" FontSize="18" x:Name="TbPrice"  Text="{Binding TotalPrice}"></TextBlock>
+            <TextBlock Padding="5" VerticalAlignment="Center" FontSize="18"  Text="руб "></TextBlock>
+            <Button x:Name="BtZakaz" Margin="5" Width="100" Content="Заказать" Click="Button_Click_3"></Button>
+            <Button Margin="5" Width="110" Content="К списку товаров" Click="Button_Click_4"></Button>
         </StackPanel>
 
         <ListBox VerticalAlignment="Top" Grid.ColumnSpan="2" x:Name="LbCart" HorizontalContentAlignment="Stretch" AlternationCount="2">
@@ -51,15 +56,37 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
-                            <TextBlock FontSize="18" FontWeight="Bold" Text=" Количество: "></TextBlock>
+                            <TextBlock FontSize="18" FontWeight="Bold" Text="Quantity: "></TextBlock>
                             <TextBlock FontSize="18" Text="{Binding Count}"></TextBlock>
-                            <TextBlock FontSize="18" FontWeight="Bold" Text=" Заказ №"></TextBlock>
-                            <TextBlock FontSize="18" Text="{Binding ZakazId}"></TextBlock>
-                            <TextBlock FontSize="18" FontWeight="Bold" Text=" Код заказа: " Visibility="{Binding VisabilityTbCode}"></TextBlock>
-                            <TextBlock FontSize="18" Text="{Binding Zakaz.Code}" Visibility="{Binding VisabilityTbCode}"></TextBlock>
-                            <TextBlock FontSize="18" FontWeight="Bold" Text=" Дата заказа: " Visibility="{Binding VisabilityTbData}"></TextBlock>
-                            <TextBlock FontSize="18" Text="{Binding Zakaz.Data , ConverterCulture=ru, StringFormat=D}" Visibility="{Binding VisabilityTbData}"></TextBlock>
                         </StackPanel>
+                        <Grid Width="120" Grid.Row="0" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Margin="3" FontSize="14" Grid.Row="0" Grid.Column="0" Padding="10"  Click="Button_Click_2" CommandParameter="{Binding}">
+                                <Button.Content>
+                                    <Image Source="/Resoursec/plus.png" Stretch="UniformToFill"></Image>
+
+                                </Button.Content>
+                            </Button>
+                            <Button Margin="3" FontSize="14" Grid.Row="1" Grid.Column="0" Padding="10" Click="Button_Click" CommandParameter="{Binding}">
+                                <Button.Content>
+                                    <Image Source="/Resoursec/minus.png" Stretch="UniformToFill"></Image>
+                                </Button.Content>
+                            </Button>
+                            <Button Margin="3" FontSize="14" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Padding="10" Click="Button_Click_1" CommandParameter="{Binding}">
+                                <Button.Content>
+                                    <Image Source="/Resoursec/cartRemove.png" Stretch="Fill"></Image>
+
+
+                                </Button.Content>
+                            </Button>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

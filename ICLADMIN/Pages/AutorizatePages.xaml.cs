@@ -1,4 +1,4 @@
-﻿using ICL.Components;
+﻿using ICLADMIN.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ICL.Pages
+namespace ICLADMIN.Pages
 {
     /// <summary>
     /// Логика взаимодействия для AutorizatePages.xaml
@@ -33,9 +33,9 @@ namespace ICL.Pages
                 MessageBox.Show("Логин неверный");
                 return;
             }
-            if (employee.Id == 1)
+            if(employee.Id != 1)
             {
-                MessageBox.Show("Это приложение для клиента");
+                MessageBox.Show("Это приложение только для администратора");
                 return;
             }
             if (employee.Password != PasswordTb.Password)

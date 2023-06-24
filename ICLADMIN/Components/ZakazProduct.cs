@@ -7,25 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICL.Components
+namespace ICLADMIN.Components
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Zakaz
+    public partial class ZakazProduct
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Zakaz()
-        {
-            this.ZakazProduct = new HashSet<ZakazProduct>();
-        }
-    
         public int Id { get; set; }
-        public string Prise { get; set; }
-        public Nullable<int> Code { get; set; }
-        public Nullable<System.DateTime> Data { get; set; }
+        public Nullable<int> ZakazId { get; set; }
+        public Nullable<int> ProductId { get; set; }
+        public Nullable<int> Count { get; set; }
+        public Nullable<int> EmployeId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ZakazProduct> ZakazProduct { get; set; }
+        public virtual Employe Employe { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Zakaz Zakaz { get; set; }
     }
 }
