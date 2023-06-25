@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICL.Components
+namespace ICLZakaz.Components
 {
     using System;
     using System.Collections.Generic;

@@ -79,7 +79,7 @@
                             <TextBlock FontSize="18" Text="{Binding Price}"></TextBlock>
                             <TextBlock FontSize="18" Text=" руб."></TextBlock>
                         </StackPanel>
-                        <Button Width="70" FontSize="14" Grid.Row="0" Visibility="{Binding VisabilityBt}" Grid.Column="2" Padding="10" Click="Button_Click">
+                        <Button Width="70" FontSize="14" Grid.Row="0" Visibility="Collapsed" Grid.Column="2" Padding="10" Click="Button_Click">
                             <Button.Content>
                                 <Image Source="/Resoursec/cart.png"  Stretch="UniformToFill"></Image>
 

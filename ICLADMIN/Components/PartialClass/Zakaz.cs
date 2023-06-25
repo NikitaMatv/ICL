@@ -41,5 +41,21 @@ namespace ICLADMIN.Components
 
             }
         }
+        public Visibility VisabilityBt
+        {
+            get
+            {
+                if (App.LoggedEmployee.Id != 1)
+                {
+                    return Visibility.Visible;
+
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+
+            }
+        }
     }
 }

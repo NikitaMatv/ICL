@@ -5,17 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ICL.Components
+namespace ICLZakaz.Components
 {
-    public partial class ZakazProduct
+    public partial class Zakaz
     {
         public Visibility VisabilityTbCode
         {
             get
             {
-                int zId = (int)ZakazId;
-                Zakaz zakaz = App.DB.Zakaz.FirstOrDefault(x => x.Id == zId );
-                if (zakaz.Data < DateTime.Now && zakaz.IsClame != true)
+                if (Data == DateTime.Now)
                 {
                     return Visibility.Visible;
 
@@ -31,9 +29,23 @@ namespace ICL.Components
         {
             get
             {
-                int zId = (int)ZakazId;
-                Zakaz zakaz = App.DB.Zakaz.FirstOrDefault(x => x.Id == zId);
-                if ( zakaz.Data > DateTime.Now)
+                if (Data != DateTime.Now)
+                {
+                    return Visibility.Visible;
+
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+
+            }
+        }
+        public Visibility VisabilityBt
+        {
+            get
+            {
+                if (App.LoggedEmployee.Id != 1)
                 {
                     return Visibility.Visible;
 
